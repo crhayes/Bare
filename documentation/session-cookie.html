@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bare Documentation | Sessions &amp; Cookies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+		<style type="text/css">
+      body {
+        padding-top: 75px;
+        padding-bottom: 40px;
+      }
+      #navigation {
+
+      }
+      section {
+        padding-top: 75px;
+      }
+      section:first-child {
+        margin-top: -75px;
+      }
+      .affix {
+        width: inherit;
+      }
+      .nav li.active {
+        background: #333 !important;
+      }
+    </style>
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-responsive.css"> Include this to make Bootstrap responsive -->
+    <link rel="stylesheet" type="text/css" href="assets/css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- <link rel="stylesheet/less" type="text/css" href="assets/css/style.css"> Use this instead if using LESS CSS Framework -->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/colorbox/style-1.css"> If using Color Box include this for style -->
+  </head>
+  
+  <body data-spy="scroll" data-target="#sidebar">
+    <div id="navigation" class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="index.html">Bare Documentation</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="index.html">Essentials</a></li>
+              <li><a href="database.html">Database</a></li>
+              <li><a href="validation.html">Validation</a></li>
+              <li class="active"><a href="session-cookie.html">Sessions & Cookies</a></li>
+              <li><a href="upload.html">Uploads</a></li>
+              <li><a href="export.html">Exports</a></li>
+              <li><a href="helpers.html">Helpers</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div id="sidebar" class="span3">
+          <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="0">
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#session">Sessions</a></li>
+            <li><a href="#cookie">Cookies</a></li>
+          </ul>
+        </div>
+
+        <div id="content" class="span9">
+          <section id="intro" class="row-fluid">
+            <div class="span12">
+              <h1>Introduction</h1>
+              <hr>
+              <p>The session and cookie helpers, found in <code>libraries/session/session.php</code> and <code>libraries/cookie/cookie.php</code> respectively, provide an easy way to add encryption to sessions and cookies.</p>
+              <p>Sessions and cookies are <strong>encrypted with AES</strong> before being stored, which greatly improves their security.</p>
+            </div>
+          </section>
+
+          <section id="session" class="row-fluid">
+            <div class="span12">
+              <h1>Sessions</h1>
+              <hr>
+              <h2>Start a Session</h2>
+              <p>Starting a session is simple, and you can set an encryption key for increased security.</p>
+<pre class="prettyprint linenums">
+Session::start()->setKey('thisIsASecurityKeyForTheEncryption');
+</pre>
+              <h2>Handling Sessions</h2>
+<pre class="prettyprint linenums">
+// Set a session
+Session::set('username', $user->username);
+
+// Get a session
+echo Session::get('username');
+
+// Delete a session
+Session::delete('username');
+</pre> 
+              <h2>Session Drivers</h2>
+              <p>Several drivers are provided to enable sessions to be stored in various ways.</p>
+<pre class="prettyprint linenums">
+// Native session driver
+Session::start();
+
+// Cookie driver - sessions are stored in cookies
+Session::start('cookie');
+
+// Database driver - sessions are stored in a database (coming soon)
+Session::start('database');
+</pre>
+            </div>
+          </section>
+
+          <section id="cookie" class="row-fluid">
+            <div class="span12">
+              <h1>Cookies</h1>
+              <hr>
+              <h2>Handling Cookies</h2>
+<pre class="prettyprint linenums">
+// Set a cookie
+Cookie::set('username', $user->username);
+
+// Get a cookie
+echo Cookie::get('username');
+
+// Delete a cookie
+Cookie::delete('username');
+
+// Currently the encryption key is hardcoded as a property of the Cookie class
+// A method to set the key will likely be provided in the future
+</pre>
+            </div>
+          </section>
+
+          <section id="intro" class="row-fluid">
+            <div class="span12">
+              <h1></h1>
+              <hr>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <footer class="pull-right">
+        <p>&copy; OKD &amp; Chris Hayes 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Javascripts -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/less-1.3.0.min.js"></script>
+    <script type="text/javascript" src="assets/js/prettify.js"></script>
+    <!-- <script type="text/javascript" src="assets/js/form-default-toggle.js"></script> Include this to toggle form default values on blur/focus -->
+    <!-- <script type="text/javascript" src="assets/js/jquery.colorbox-min.js"></script> Include this to use Color Box -->
+    <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> Incude this to use jQuery Validate -->
+    <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/additional-methods.min.js"></script> Additional jQuery Validate methods -->
+    <script type="text/javascript" src="assets/js/scripts.js"></script>
+    <!--[if lt IE 9]><script src="assets/js/html5shiv.js"></script><![endif]-->
+  </body>
+</html>

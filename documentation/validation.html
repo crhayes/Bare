@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bare Documentation | Validation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+		<style type="text/css">
+      body {
+        padding-top: 75px;
+        padding-bottom: 40px;
+      }
+      #navigation {
+
+      }
+      section {
+        padding-top: 75px;
+      }
+      section:first-child {
+        margin-top: -75px;
+      }
+      .affix {
+        width: inherit;
+      }
+      .nav li.active {
+        background: #333 !important;
+      }
+    </style>
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-responsive.css"> Include this to make Bootstrap responsive -->
+    <link rel="stylesheet" type="text/css" href="assets/css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- <link rel="stylesheet/less" type="text/css" href="assets/css/style.css"> Use this instead if using LESS CSS Framework -->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/colorbox/style-1.css"> If using Color Box include this for style -->
+  </head>
+  
+  <body data-spy="scroll" data-target="#sidebar">
+    <div id="navigation" class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="index.html">Bare Documentation</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="index.html">Essentials</a></li>
+              <li><a href="database.html">Database</a></li>
+              <li class="active"><a href="validation.html">Validation</a></li>
+              <li><a href="session-cookie.html">Sessions & Cookies</a></li>
+              <li><a href="upload.html">Uploads</a></li>
+              <li><a href="export.html">Exports</a></li>
+              <li><a href="helpers.html">Helpers</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div id="sidebar" class="span3">
+          <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="0">
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#adding-rules">Adding Rules</a></li>
+            <li><a href="#checks">Checking for Errors</a></li>
+            <li><a href="#handling-errors">Handling Errors</a></li>
+            <li><a href="#validation-rules">Validation Rules</a></li>
+          </ul>
+        </div>
+
+        <div id="content" class="span9">
+          <section id="intro" class="row-fluid">
+            <div class="span12">
+              <h1>Introduction</h1>
+              <hr>
+              <p>The Validation helper, found in <code>libraries/validation/validation.php</code>, provides an extremely simple and robust way to validate data.</p>
+              <h2>Initializing Validation</h2>
+<pre class="prettyprint linenums">
+// Send in an array of data, and optionally an array of error messages
+$validation = Validation::make($data, $messages);
+
+// More semantic way to validate user input. 
+// Data is automatically set to $_POST and $_FILES behind the scenes
+// Takes an optional array of error messages
+$validation = Validate::input($messages);
+</pre>
+            </div>
+          </section>
+
+          <section id="adding-rules" class="row-fluid">
+            <div class="span12">
+              <h1>Adding Rules</h1>
+              <hr>
+              <p>Rules are added by calling the <code>rule($field, $rule)</code> function. There are a plethora of validation rules to choose from.</p>
+              <ul>
+                <li>For each field, call the <code>rule($field, $rule)</code> function; the first parameter is the name of the field and the second parameter is a string of rules</li>
+                <li>Rules are separated by the <code>|</code> (pipe) character</li>
+                <li>Rules that have arguments take a comma separated list after a colon <code>:arg, arg, arg</code></li>
+              </ul>
+<pre class="prettyprint linenums">
+// $_POST
+array(
+  'name' => 'Chris',
+  'email' => 'chayes@okd.com',
+  'position' => 'Web Developer',
+  'years' => ''
+);
+
+$validation = Validate::input() // OR Validate::make($_POST)
+  ->rule('name', 'required')
+  ->rule('email', 'required | email')
+  ->rule('position', 'in:web developer, designer, artist')
+  ->rule('years', 'required | between:1,5');
+</pre>
+           </div>
+          </section>
+
+          <section id="checks" class="row-fluid">
+            <div class="span12">
+              <h1>Checking for Errors</h1>
+              <hr>
+              <p>Checking for errors is extremely simple, and several methods are provided (for semantics).</p>
+<pre class="prettyprint linenums">
+// Validation checks
+$validation->passes()
+$validation->fails()
+$validation->valid()   // Same as ->passes()
+$validation->invalid() // Same as ->fails()
+
+// Example
+if ($validaton->passes()) {
+  // save user
+} else {
+  // redirect back to form
+}
+</pre>
+            </div>
+          </section>
+
+          <section id="handling-errors" class="row-fluid">
+            <div class="span12">
+              <h1>Handling Errors</h1>
+              <hr>
+              <p>Each validation rule has a default error message. Furthermore, errors from the Validation library are stored in a <code>ValidationError</code> object. This gives us a few really great methods for accessing error messages.</p>
+<pre class="prettyprint linenums">
+// Validation check
+if ($validation->fails()) {
+  $errors = $validation->errors; // ValidationError object
+}
+</pre>
+              <h2>Checking for Errors</h2>
+<pre class="prettyprint linenums">
+// Checking if the name field has errors
+if ($validation->errors->exist('name')) {
+  // do something
+}
+
+// Check if there are any errors
+if ($validation->errors->exist()) {
+  // do something
+}
+</pre>           
+              <h2>Getting Validation Error Messages</h2>
+<pre class="prettyprint linenums">
+// First error for the name field
+echo $validation->errors->first('name');
+
+// All errors for the email field
+$emailErrors = $validation->errors->get('email');
+
+// All errors
+$errors = $validation->errors->all();
+</pre>
+              <h2>Formatting Error Messages</h2>
+              <p>By default an error message is returned as a string. However, we can send in a second parameter to the <code>first()</code>, <code>get()</code>, and <code>all()</code> methods to format the error message.</p>
+<pre class="prettyprint linenums">
+// Format and echo the first error for the name field
+echo $validation->errors->first('name', '&lt;strong&gt;:message&lt;/strong&gt;');
+
+// Format all email errors
+$emailErrors = $validation->errors->get('email', '&lt;strong&gt;:message&lt;/strong&gt;');
+
+// Format all error messages
+$errors = $validation->errors->all('&lt;div class=&quot;error&quot;&gt;:message&lt;/div&gt;');
+</pre>
+              <h2>Perfect Use Case</h2>
+<pre class="prettyprint linenums">
+&lt;form method=&quot;post&quot;&gt;
+  &lt;?= $validation-&gt;errors-&gt;first('name', '&lt;strong&gt;:message&lt;/strong&gt;'); ?&gt;
+  &lt;input type=&quot;text&quot; name=&quot;name&quot; placeholder=&quot;Name&quot;&gt;
+
+  &lt;?= $validation-&gt;errors-&gt;first('email', '&lt;strong&gt;:message&lt;/strong&gt;'); ?&gt;
+  &lt;input type=&quot;text&quot; name=&quot;email&quot; placeholder=&quot;Email&quot;&gt;
+
+  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+            </div>
+          </section>
+
+          <section id="validation-rules" class="row-fluid">
+            <div class="span12">
+              <h1>Validation Rules</h1>
+              <hr>
+              <h2>required</h2>
+              <p>Validate that a value exists.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('field', 'required');
+</pre>
+              <h2>accepted</h2>
+              <p>Validate that a attribute was "accepted". Check that the value equals '1' or 'yes'; useful for checkboxes.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('field', 'accepted');
+</pre>
+              <h2>date</h2>
+              <p>Validate that a value is a date.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('field', 'date');
+</pre>
+              <h2>email</h2>
+              <p>Validate that a value is an email address.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('field', 'email');
+</pre>
+              <h2>ip</h2>
+              <p>Validate that a value is an IP address.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('field', 'ip');
+</pre>
+              <h2>url</h2>
+              <p>Validate that a value is a URL.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('field', 'url');
+</pre>
+              <h2>between</h2>
+              <p>Validate that a value is between two values.</p>
+<pre class="prettyprint linenums">
+// If the field is an integer or numeric value, either rule (integer | numeric) should also be applied. This ensures that the error message returned is formatted for a number and not a string.
+
+// Integer or numeric: checks that it is a number between two numbers specified
+Validation::make($post)
+  ->rule('age', 'numeric | between:1,5');
+
+// String: checks that the string length is between two numbers specified
+Validation::make($post)
+  ->rule('name', 'between:1,5');
+</pre>
+              <h2>min</h2>
+              <p>Validate the size of a value is greater than a minimum value.</p>
+<pre class="prettyprint linenums">
+// If the field is an integer or numeric value, either rule (integer | numeric) should also be applied. This ensures that the error message returned is formatted for a number and not a string.
+
+// Integer or numeric: checks that a value is >= the number specified
+Validation::make($post)
+  ->rule('age', 'integer | min:19');
+
+// String: checks that a string has at least a specified length
+Validation::make($post)
+  ->rule('password', 'min:8');
+</pre>
+              <h2>max</h2>
+              <p>Validate the size of a value is less than a maximum value</p>
+<pre class="prettyprint linenums">
+// If the field is an integer or numeric value, either rule (integer | numeric) should also be applied. This ensures that the error message returned is formatted for a number and not a string.
+
+// Integer or numeric: checks that a value is <= the number specified
+Validation::make($post)
+  ->rule('tries', 'integer | max:3');
+
+// String: checks that a string is not longer than the specified length
+Validation::make($post)
+  ->rule('age', 'max:25');
+</pre>
+              <h2>match</h2>
+              <p>Validate that the value of one attribute is the same as the value of another attribute.</p>
+<pre class="prettyprint linenums">
+// Check if 'password' matches 'password_confirm'
+Validation::make($post)
+  ->rule('password', 'required | min:8')
+  ->rule('password_confirm', 'required | min:8 | match:password');
+</pre>
+              <h2>mismatch</h2>
+              <p>Validate that the value of one attribute is different from the value of another attribute.</p>
+<pre class="prettyprint linenums">
+// Check for two different email addresses
+Validation::make($post)
+  ->rule('emailOne', 'required | email')
+  ->rule('emailTwo', 'required | email | mismatch:emailOne');
+</pre>
+              <h2>same</h2>
+              <p>Validate that a value is the same as a given value.</p>
+<pre class="prettyprint linenums">
+// Check if two integers are the same
+Validation::make($post)
+  ->rule('number', 'same:100');
+
+// Check if a security code is the same as a given string
+Validation::make($post)
+  ->rule('securityCode', 'required | same:FSG$#%34543t#$%');
+</pre>
+              <h2>different</h2>
+              <p>Validate that a value is different from a given value.</p>
+<pre class="prettyprint linenums">
+// Check if two integers are the different
+Validation::make($post)
+  ->rule('number', 'different:100');
+
+// Check that a name is not 'Chris'
+Validation::make($post)
+  ->rule('name', 'different:Chris');
+</pre>
+              <h2>age</h2>
+              <p>Validate a person's age given their birthdate (formatted YYYY-MM-DD).</p>
+<pre class="prettyprint linenums">
+// Validate that a user is 18 years old
+Validation::make($post)
+  ->rule('age', 'age:18');
+</pre>
+              <h2>numeric</h2>
+              <p>Validate that a attribute is numeric.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('numberOfCars', 'numeric');
+</pre>
+              <h2>integer</h2>
+              <p>Validate that a attribute is an integer.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('age', 'integer');
+</pre>
+              <h2>alpha</h2>
+              <p>Validate that a value contains only alphabetic characters.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('name', 'alpha');
+</pre>
+              <h2>alphanum</h2>
+              <p>Validate that a value contains only alpha-numeric characters.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('description', 'alphanum');
+</pre>
+              <h2>alphadash</h2>
+              <p>Validate that a value contains only alpha-numeric characters, dashes, and underscores.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('url', 'alphadash');
+</pre>
+              <h2>postalcode</h2>
+              <p>Validate that a value is a Canadian postal code.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('postal_code', 'postalcode');
+</pre>
+              <h2>zipcode</h2>
+              <p>Validate that a value is an American zip code.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('zip_code', 'zipcode');
+</pre>
+          
+              <h2>in</h2>
+              <p>Validate that a value is in a comma-delimated list. (case-insensitive)</p>
+<pre class="prettyprint linenums">
+// Check if a number is in a list of numbers
+Validation::make($post)
+  ->rule('number', 'in:1, 2, 3');
+
+// Check if a string is in a list of strings
+Validation::make($post)
+  ->rule('job', 'in:web designer, developer, artist');
+</pre>
+          
+              <h2>notin</h2>
+              <p>Validate that a value is not in a comma-delimated list. (case-insensitive)</p>
+<pre class="prettyprint linenums">
+// Check if a number is in a list of numbers
+Validation::make($post)
+  ->rule('number', 'notin:7, 8, 9');
+
+// Check if a string is in a list of strings
+Validation::make($post)
+  ->rule('name', 'notin:Chris, Rob, Ryan');
+</pre>
+              <h2>filetype</h2>
+              <p>Validate that a file has an allowed extension.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('profile_image', 'filetype:jpg, png, gif');
+</pre>
+              <h2>filesize</h2>
+              <p>Validate that the size of a file is not too large.</p>
+<pre class="prettyprint linenums">
+Validation::make($post)
+  ->rule('profile_image', 'filesize:2Mb');
+</pre>
+            </div>
+          </section>
+
+          <section id="" class="row-fluid">
+            <div class="span12">
+              <h1></h1>
+              <hr>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <footer class="pull-right">
+        <p>&copy; OKD &amp; Chris Hayes 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Javascripts -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/less-1.3.0.min.js"></script>
+    <script type="text/javascript" src="assets/js/prettify.js"></script>
+    <!-- <script type="text/javascript" src="assets/js/form-default-toggle.js"></script> Include this to toggle form default values on blur/focus -->
+    <!-- <script type="text/javascript" src="assets/js/jquery.colorbox-min.js"></script> Include this to use Color Box -->
+    <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> Incude this to use jQuery Validate -->
+    <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/additional-methods.min.js"></script> Additional jQuery Validate methods -->
+    <script type="text/javascript" src="assets/js/scripts.js"></script>
+    <!--[if lt IE 9]><script src="assets/js/html5shiv.js"></script><![endif]-->
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bare Documentation | Essentials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+		<link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+		<style type="text/css">
+      body {
+        padding-top: 75px;
+        padding-bottom: 40px;
+      }
+      #navigation {
+
+      }
+      section {
+        padding-top: 75px;
+      }
+      section:first-child {
+        margin-top: -75px;
+      }
+      .affix {
+        width: inherit;
+      }
+      .nav li.active {
+        background: #333 !important;
+      }
+    </style>
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-responsive.css"> Include this to make Bootstrap responsive -->
+    <link rel="stylesheet" type="text/css" href="assets/css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- <link rel="stylesheet/less" type="text/css" href="assets/css/style.css"> Use this instead if using LESS CSS Framework -->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/colorbox/style-1.css"> If using Color Box include this for style -->
+  </head>
+  
+  <body data-spy="scroll" data-target="#sidebar">
+    <div id="navigation" class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="index.html">Bare Documentation</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="index.html">Essentials</a></li>
+              <li><a href="database.html">Database</a></li>
+              <li><a href="validation.html">Validation</a></li>
+              <li><a href="session-cookie.html">Sessions & Cookies</a></li>
+              <li><a href="upload.html">Uploads</a></li>
+              <li><a href="export.html">Exports</a></li>
+              <li><a href="helpers.html">Helpers</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div id="sidebar" class="span3">
+          <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="0">
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#structure">App Structure</a></li>
+            <li><a href="#front-controller">Front Controller</a></li>
+            <li><a href="#config">Config</a></li>
+            <li><a href="#routes">Routes</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#before-after">Before.php &amp; After.php</a></li>
+            <li><a href="#assets">Assets</a></li>
+          </ul>
+        </div>
+
+        <div id="content" class="span9">
+          <section id="intro" class="row-fluid">
+            <div class="span12">
+              <h1>Introduction</h1>
+              <hr>
+              <h2>Is Bare a Framework?</h2>
+              <p>Bare is not a framework, but a boilerplate full of useful code that is packaged for speed and reuse.</p>
+
+              <h2>Why Should I Use Bare?</h2>
+              <p>Bare reduces the redundant boilerplate code that is required for every new project. Bare also includes some useful PHP and JavaScript libraries to get you started quickly.</p>
+
+              <h2>How Do I Use Bare?</h2>
+              <p>To use Bare simply duplicate the directory, rename it, and get started working!</p>
+            </div>
+          </section>
+
+          <section id="structure" class="row-fluid">
+            <div class="span12">
+              <h1>App Structure</h1>
+              <hr>
+              <h2>Directory Structure</h2>
+              <p>At first glance it may seem like a lot, but in reality Bare is very small. Bare provides a well organized base structure to build any website or web application from.</p>
+<pre class="prettyprint">
+- bare/
+  - index.php
+  - config.php
+  - before.php
+  - after.php
+  - assets/
+    - css/
+    - js/
+    - images/
+    - fonts/
+    - uploads/
+  - libraries/
+    - cookie/
+    - database/
+    - export/
+    - helpers.php
+    - session/
+    - upload/
+    - validation/
+    - vendor/
+  - views/
+    - home.php
+    - 404.php
+  - documentation/
+</pre>
+            </div>
+          </section>
+
+          <section id="front-controller" class="row-fluid">
+            <div class="span12">
+              <h1>Front Controller</h1>
+              <hr>
+              <p>Bare uses the <strong>front controller</strong> design pattern, which "provides a centralized entry point for handling requests." All requests in Bare are first routed through <code>index.php</code>.</p>
+              <p>Routing all requests through a central location is very beneficial. It provides us an extremely easy way to execute common code on every request, such as including libraries or authenticating users.</p>
+            </div>
+          </section>
+
+          <section id="config" class="row-fluid">
+            <div class="span12">
+              <h1>Config</h1>
+              <hr><p>The <code>config.php</code> file contains application-wide configuration items. By default this includes:</p>
+              <h2>Application Constants</h2>
+              <p>These are useful constants that are used throughout the application.</p>
+<pre class="prettyprint linenums">
+
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT_DIR', __DIR__);
+define('VIEW_PATH', ROOT_DIR.'/views/');
+define('UPLOAD_PATH', ROOT_DIR.'/assets/uploads/');
+define('BASE_PATH', 
+        substr(dirname(__FILE__),strlen($_SERVER['DOCUMENT_ROOT'])));
+</pre>
+              <h2>Routes</h2>
+              <p>Routes provide a way to map request URIs to PHP files.</p>
+<pre class="prettyprint linenums">
+$routes = array(
+  '/' => 'home.php',
+  '404' => '404.php',
+);
+</pre>
+              <h2>Database Credentials</h2>
+              <p>The database credentials are later used to connect to a database.</p>
+<pre class="prettyprint linenums">
+$credentials = array(
+  'host'     => 'localhost',
+  'username' => '',
+  'password' => '',
+  'database' => ''
+);
+</pre>
+            </div>
+          </section>
+
+          <section id="routes" class="row-fluid">
+            <div class="span12">
+              <h1>Routes</h1>
+              <hr>
+              <h2>Using Routes</h2>
+              <p>Routes are found in <code>config.php</code> and provide an easy way to match a request URI with a PHP file.</p>
+              <p>The <code>index</code> route is defined by <code>'/'</code>. All other routes are defined by the request URI without the preceding <code>'/'</code>.</p>
+              <p>Files associated with a route will automatically have the <code>VIEW_PATH</code> constant (defined in <code>config.php</code>) prepended to them.
+              <p>The following examples show which URIs will match to which PHP files behind the scenes:</p>
+<pre class="prettyprint linenums">
+$routes = array(
+  // http://example.com  =>  http://example.com/views/home.php
+  '/' => 'home.php',
+
+  // http://example.com/404  =>  http://example.com/views/404.php
+  '404' => '404.php',
+
+  // http://example.com/about  =>  http://example.com/views/about.php
+  'about' => 'about.php'
+);
+</pre>
+              <p>Routes provide a simple way to decouple the request URI from the executed PHP file. There are advantages to this:</p>
+              <ul>
+                <li>remove <code>.php</code> from URL for pretty URLs</li>
+                <li>flexibility in the naming scheme</li>
+                <li>change URL scheme without having to rename the files</li>
+              </ul>
+
+              <h2>Default Routes</h2>
+              <p>In the case a route is not defined, Bare will attempt to find a file with the name of the requested URI. Bare will look in the directory specified by the <code>config.php</code> constant <code>VIEW_PATH</code>; by default this is <code>/views</code> but this can easily be changed! For example:</p>
+<pre class="prettyprint linenums">
+// config.php
+$routes = array (
+  '/' => 'home.php'
+  '404' => '404.php'
+);
+
+=> User requests http://example.com/about
+=> There is no route for this request, so Bare will look for http://example.com/views/about.php
+
+// Change Bare to check in the root directory by default
+// config.php
+define('VIEW_PATH', ROOT_DIR.'/');
+</pre>
+              <h2>404s</h2>
+              <p>If there is no route defined for the request and Bare cannot load a default file, it will load the <code>404</code> route.
+            </div>
+          </section>
+
+          <section id="views" class="row-fluid">
+            <div class="span12">
+              <h1>Views</h1>
+              <hr>
+              <p>Views are nothing more than PHP pages you want to include into your application. By default they are placed in the <code>views/</code> directory to keep them organized separately from the Bare core files.</p>
+              <p>As mentioned previously, this directory can be easily changed:<p>
+<pre class="prettyprint linenums">
+// config.php
+
+// Change Bare to check in the root directory by default
+define('VIEW_PATH', ROOT_DIR.'/');
+
+// Change Bare to check in the pages/ directory by default
+define('VIEW_PATH', ROOT_DIR.'/pages/');
+</pre>
+            </div>
+          </section>
+
+          <section id="before-after" class="row-fluid">
+            <div class="span12">
+              <h1>Before.php &amp; After.php</h1>
+              <hr>
+              <p><code>Before.php</code> is included on every request before the requested <code>view</code> file is included, providing a place to put code that should be executed on every request before the requested content is loaded. Common examples include loading application-wide libraries or authenticating users.</p>
+<pre class="prettyprint linenums">
+require 'libraries/database/database.php';
+require 'libraries/validation/validation.php';
+
+if ( ! $user->loggedIn()) {
+  header('Location: login.php');
+  exit;
+}
+</pre>
+              <p><code>After.php</code> is included on every request after the requested <code>view</code> file is included, providing a place to put code that should be executed on every request that may depend on the contents of the file being requested.</p>
+              <p>An interesting and flexible authentication scheme could look like this:</p>
+<pre class="prettyprint linenums">
+// before.php
+require 'libraries/session/session.php';
+
+// home.php
+define('AUTH_REQUIRED', true);
+
+// login.php
+define('AUTH_REQUIRED', false);
+
+// after.php
+if (defined('AUTH_REQUIRED') &amp;&amp; AUTH_REQUIRED === true) {
+  if ( ! Session::get('user')) {
+    header('Location: login');
+    exit;
+  }
+}
+</pre>
+            </div>
+          </section>
+
+          <section id="assets" class="row-fluid">
+            <div class="span12">
+              <h1>Assets</h1>
+              <hr>
+              <p>The predefined folder <code>assets</code> is included to provide a centralized place for all application assets, as well as consitency across Bare projects. Several fonts and JavaScript libraries are also included for convenience.<p>
+              <p>Folders exist for all of the most common assets, including <code>css</code>, <code>js</code>, <code>images</code>, <code>fonts</code>, and <code>uploads</code>.</p>
+              <h3>Asset Helper</h3>
+              <p>A helper function exists for getting the path to an asset, and prepends the <code>BASE_PATH</code> to the asset path.</p>
+              <p><em>The benefit of using this helper is that you can change your project folder and you won't have to change any of your URLs; the change will be reflected in the <code>BASE_PATH</code></em>.<p>
+<pre class="prettyprint linenums">
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&lt;?php asset('css/style.css') ?&gt;&quot;&gt;
+</pre>
+            </div>
+          </section>
+
+          <section id="intro" class="row-fluid">
+            <div class="span12">
+              <h1></h1>
+              <hr>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <footer class="pull-right">
+        <p>&copy; OKD &amp; Chris Hayes 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Javascripts -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/less-1.3.0.min.js"></script>
+    <script type="text/javascript" src="assets/js/prettify.js"></script>
+    <!-- <script type="text/javascript" src="assets/js/form-default-toggle.js"></script> Include this to toggle form default values on blur/focus -->
+    <!-- <script type="text/javascript" src="assets/js/jquery.colorbox-min.js"></script> Include this to use Color Box -->
+    <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> Incude this to use jQuery Validate -->
+    <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/additional-methods.min.js"></script> Additional jQuery Validate methods -->
+    <script type="text/javascript" src="assets/js/scripts.js"></script>
+    <!--[if lt IE 9]><script src="assets/js/html5shiv.js"></script><![endif]-->
+  </body>
+</html>
