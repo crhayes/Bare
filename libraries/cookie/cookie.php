@@ -53,6 +53,20 @@ class Cookie
 	}
 
 	/**
+	 * Return an instance of the Cookie class.
+	 * 
+	 * @return Cookie
+	 */
+	public function getInstance()
+	{
+		if ( ! isset(self::$instance)) {
+			self::$instance = new Cookie();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Set the encryption key for the phpSec library.
 	 * 
 	 * @param string $key
@@ -63,8 +77,42 @@ class Cookie
 	}
 
 	/**
+	 * Encrypt the data that is to be stored in the cookie and then create the cookie.
+	 * 
+	 * @param  string 	$key
+	 * @param  mixed 	$value
+	 * @return void
+	 */
+	public function setCookie($key, $value)
+	{		
+		$_COOKIE[$key] = $this->aes->encrypt(serialize($value));
+	}
+	
+	/**
+	 * Decrypt the data from the cookie and return it.
+	 * 
+	 * @param  string 	$key
+	 * @return mixed
+	 */
+	public function getCookie($key)
+	{
+		return unserialize($this->aes->decrypt($_COOKIE[$key]));
+	}
+
+	/**
+	 * Delete a cookie variable.
+	 * 
+	 * @param  string 	$key
+	 * @return void
+	 */
+	public function deleteCookie($key)
+	{
+		unset($_COOKIE[$key]);	
+	}
+
+	/**
 	 * Allow static interface for setting, getting, and
-	 * deleting sessions.
+	 * deleting cookies.
 	 * 
 	 * @param  string 	$name
 	 * @param  array 	$arguments
@@ -72,17 +120,19 @@ class Cookie
 	 */
 	public static function __callStatic($name, $arguments)
 	{
+		$cookie = self::getInstance();
+
 		switch($name) {
 			case 'set':
 				list($key, $value) = $arguments;
-				self::$instance->set($key, $value);
+				$cookie->setCookie($key, $value);
 				break;
 			case 'get':
 				list($key) = $arguments;
-				return self::$instance->get($key);
+				return $cookie->getCookie($key);
 			case 'delete':
 				list($key) = $arguments;
-				self::$instance->delete($key);
+				$cookie->deleteCookie($key);
 				break;
 		}
 	}
