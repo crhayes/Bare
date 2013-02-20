@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Welcome to Bare!</title>
     <meta name="description" content="">
+    <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="icon" type="image/png" href="<?php asset('images/favicon.png') ?>">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="<?php asset('css/normalize.css') ?>">
-    <link rel="stylehseet" type="text/css" href="<?php asset('css/style.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?php asset('css/font-awesome.min.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?php asset('css/style.css') ?>">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Abril+Fatface|Gentium+Book+Basic|Gravitas+One|Lato|Merriweather|Old+Standard+TT|Open+Sans|Playfair+Display|PT+Sans|PT+Sans+Narrow|PT+Serif|Vollkorn" type="text/css">
     <!--
     <link rel="stylesheet" type="text/css" href="<?php asset('css/colorbox/style-1.css') ?>">
