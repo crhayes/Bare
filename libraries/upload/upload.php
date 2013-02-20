@@ -17,7 +17,7 @@ class Upload
      * 
      * @param   array   $file
      * @param   string  $directory
-     * @param   string  $createDirectory
+     * @param   boolean $createDirectory
      * @return  mixed
      */
     public static function save($file, $directory, $createDirectory = false)
@@ -31,12 +31,11 @@ class Upload
         
         // Make sure the directory exists.
         if ( ! is_dir($directory)) {
-            // If we haven't specified to make a directory we return false
             if ( ! $createDirectory) {
                 return false;
             }
 
-            mkdir($directory);
+            mkdir($directory, 0777, true);
 		}
 
         // Make sure the directory is writable.

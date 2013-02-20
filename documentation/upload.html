@@ -88,16 +88,18 @@
               <hr>
 
               <article>
-                <h2>save($file, $directory)</h2>
-                <p>Upload a file and save it to the directory specified.</p>
+                <h3>save($file, $directory, [$createDirectory = false])</h3>
+                <p>Upload a file and save it to the directory specified. By default the directory must exist, but you can specify to create the directory if it doesn't.</p>
 <pre class="prettyprint linenums">
 // Include the library
 require 'libraries/upload/upload.php';
 
 // Example using the Bare UPLOAD_PATH constant
 $file = $_FILES['file'];
-
 Upload::save($file, UPLOAD_PATH);
+
+// Upload and create a new directory
+Upload::save($file, UPLOAD_PATH.'users/'.$user_id, true);
 </pre>
               </article>
 
