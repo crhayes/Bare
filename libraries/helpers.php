@@ -52,7 +52,7 @@ function array_get($key, $array, $default = null)
  */
 function asset($path, $return = false)
 {
-	if (($path = BASE_PATH.'/assets/'.$path) && $return) {
+	if (($path = BASE_PATH.'assets/'.$path) && $return) {
 		return $path;
 	}
 

@@ -3,7 +3,7 @@
 // Useful constants
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_DIR', realpath(dirname(__FILE__)).DS);
-define('BASE_PATH', substr(ROOT_DIR, strlen($_SERVER['DOCUMENT_ROOT'])).DS);
+define('BASE_PATH', substr(ROOT_DIR, strlen($_SERVER['DOCUMENT_ROOT'])));
 
 // Load necessary files
 require_once ROOT_DIR.'config.php';
