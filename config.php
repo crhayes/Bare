@@ -8,11 +8,8 @@
 | Define some application constants for ease-of-use.
 |
 */
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT_DIR', __DIR__);
-define('VIEW_PATH', ROOT_DIR.'/views/');
-define('UPLOAD_PATH', ROOT_DIR.'/assets/uploads/');
-define('BASE_PATH', substr(dirname(__FILE__),strlen($_SERVER['DOCUMENT_ROOT'])));
+define('VIEW_PATH', ROOT_DIR.'views/');
+define('UPLOAD_PATH', ROOT_DIR.'assets/uploads/');
 
 /*
 |--------------------------------------------------------------------------

@@ -146,13 +146,13 @@
               <h2>Application Constants</h2>
               <p>These are useful constants that are used throughout the application.</p>
 <pre class="prettyprint linenums">
+define('VIEW_PATH', ROOT_DIR.'views/');
+define('UPLOAD_PATH', ROOT_DIR.'assets/uploads/');
 
+// Other constants defined in index.php
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT_DIR', __DIR__);
-define('VIEW_PATH', ROOT_DIR.'/views/');
-define('UPLOAD_PATH', ROOT_DIR.'/assets/uploads/');
-define('BASE_PATH', 
-        substr(dirname(__FILE__),strlen($_SERVER['DOCUMENT_ROOT'])));
+define('ROOT_DIR', realpath(dirname(__FILE__)).DS);
+define('BASE_PATH', substr(ROOT_DIR, strlen($_SERVER['DOCUMENT_ROOT'])).DS);
 </pre>
               <h2>Routes</h2>
               <p>Routes provide a way to map request URIs to PHP files.</p>
@@ -217,7 +217,7 @@ $routes = array (
 
 // Change Bare to check in the root directory by default
 // config.php
-define('VIEW_PATH', ROOT_DIR.'/');
+define('VIEW_PATH', ROOT_DIR);
 </pre>
               <h2>404s</h2>
               <p>If there is no route defined for the request and Bare cannot load a default file, it will load the <code>404</code> route.
@@ -234,10 +234,10 @@ define('VIEW_PATH', ROOT_DIR.'/');
 // config.php
 
 // Change Bare to check in the root directory by default
-define('VIEW_PATH', ROOT_DIR.'/');
+define('VIEW_PATH', ROOT_DIR);
 
 // Change Bare to check in the pages/ directory by default
-define('VIEW_PATH', ROOT_DIR.'/pages/');
+define('VIEW_PATH', ROOT_DIR.'pages/');
 </pre>
             </div>
           </section>

@@ -1,9 +1,14 @@
 <?php
 
+// Useful constants
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT_DIR', realpath(dirname(__FILE__)).DS);
+define('BASE_PATH', substr(ROOT_DIR, strlen($_SERVER['DOCUMENT_ROOT'])).DS);
+
 // Load necessary files
-require 'config.php';
-require_once ROOT_DIR.DS.'libraries/vendor/autoload.php';
-require_once ROOT_DIR.DS.'libraries/helpers.php';
+require_once ROOT_DIR.'config.php';
+require_once ROOT_DIR.'libraries/vendor/autoload.php';
+require_once ROOT_DIR.'libraries/helpers.php';
 
 // Create new HTTP Request and Response objects to handle the response
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +40,7 @@ if (isset($routes[$path])) {
     $response->setStatusCode(404);
 }
 
-include ROOT_DIR.DS.'after.php';
+include ROOT_DIR.'after.php';
 
 $response->setContent(ob_get_clean());
 $response->send();

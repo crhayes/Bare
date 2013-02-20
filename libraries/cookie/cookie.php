@@ -8,7 +8,6 @@
  * @link        http://okd.com, http://chrishayes.ca
  * @copyright   (c) 2012 OKD, Chris Hayes
  */
-
 class Cookie
 {	
 	/**
