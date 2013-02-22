@@ -8,8 +8,10 @@
 | Define some application constants for ease-of-use.
 |
 */
+define('LIB_PATH', ROOT_DIR.'../libraries/');
 define('VIEW_PATH', ROOT_DIR.'views/');
-define('UPLOAD_PATH', ROOT_DIR.'assets/uploads/');
+define('ASSET_PATH', BASE_PATH.'assets/');
+define('UPLOAD_PATH', ASSET_PATH.'uploads/');
 
 /*
 |--------------------------------------------------------------------------

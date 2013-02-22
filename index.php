@@ -7,8 +7,8 @@ define('BASE_PATH', substr(ROOT_DIR, strlen($_SERVER['DOCUMENT_ROOT'])));
 
 // Load necessary files
 require_once ROOT_DIR.'config.php';
-require_once ROOT_DIR.'libraries/vendor/autoload.php';
-require_once ROOT_DIR.'libraries/helpers.php';
+require_once LIB_PATH.'vendor/autoload.php';
+require_once LIB_PATH.'helpers.php';
 
 // Create new HTTP Request and Response objects to handle the response
 use Symfony\Component\HttpFoundation\Request;
