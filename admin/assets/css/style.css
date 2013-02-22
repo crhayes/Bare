@@ -1,0 +1,301 @@
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Page Styles
+:: Fonts
+:: Icons
+*/
+
+
+/* -----------------------------------------
+   	Page Styles
+----------------------------------------- */
+
+
+/* -----------------------------------------
+   	Fonts
+----------------------------------------- */
+
+
+/* -----------------------------------------
+   	Icons
+----------------------------------------- */
+.icon-bebo-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -172px -215px;
+}
+
+.icon-behance-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -129px -215px;
+}
+
+.icon-blogger-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -86px -215px;
+}
+
+.icon-delicious-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -43px -215px;
+}
+
+.icon-designfloat-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -0px -215px;
+}
+
+.icon-deviantart-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -215px -172px;
+}
+
+.icon-digg-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -215px -129px;
+}
+
+.icon-dribbble-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -215px -86px;
+}
+
+.icon-email-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -215px -43px;
+}
+
+.icon-evernote-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -215px -0px;
+}
+
+.icon-facebook-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -172px -172px;
+}
+
+.icon-flickr-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -129px -172px;
+}
+
+.icon-forrst-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -86px -172px;
+}
+
+.icon-googleplus-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -43px -172px;
+}
+
+.icon-grooveshark-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -0px -172px;
+}
+
+.icon-instagram-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -172px -129px;
+}
+
+.icon-lastfm-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -129px -129px;
+}
+
+.icon-linkedin-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -86px -129px;
+}
+
+.icon-myspace-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -43px -129px;
+}
+
+.icon-netvibes-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -0px -129px;
+}
+
+.icon-orkut-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -172px -86px;
+}
+
+.icon-path-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -129px -86px;
+}
+
+.icon-picasa-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -86px -86px;
+}
+
+.icon-pinterest-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -43px -86px;
+}
+
+.icon-posterous-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -0px -86px;
+}
+
+.icon-reddit-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -172px -43px;
+}
+
+.icon-rss-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -129px -43px;
+}
+
+.icon-soundcloud-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -86px -43px;
+}
+
+.icon-stumbleupon-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -43px -43px;
+}
+
+.icon-tumblr-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -0px -43px;
+}
+
+.icon-twitter-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -172px -0px;
+}
+
+.icon-vimeo-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -129px -0px;
+}
+
+.icon-wordpress-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -86px -0px;
+}
+
+.icon-yahoo-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -43px -0px;
+}
+
+.icon-youtube-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(../images/icons/social.png) no-repeat;
+    background-position: -0px -0px;
+}
