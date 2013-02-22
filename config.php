@@ -8,7 +8,7 @@
 | Define some application constants for ease-of-use.
 |
 */
-define('LIB_PATH', ROOT_DIR.'../libraries/');
+define('LIB_PATH', ROOT_DIR.'libraries/');
 define('VIEW_PATH', ROOT_DIR.'views/');
 define('ASSET_PATH', BASE_PATH.'assets/');
 define('UPLOAD_PATH', ASSET_PATH.'uploads/');
@@ -46,3 +46,15 @@ $credentials = array(
 	'password' => '',
 	'database' => ''
 );
+
+/*
+|--------------------------------------------------------------------------
+| System Settings
+|--------------------------------------------------------------------------
+|
+| Important system settings can be placed here.
+|
+*/
+date_default_timezone_set('America/Toronto');
+ini_set('error_reporting', 0);
+ini_set('display_errors', 0);
