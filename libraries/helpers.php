@@ -67,6 +67,17 @@ function load_class($name)
 }
 
 /**
+ * Load a library.
+ * 
+ * @param  string 	$name
+ * @return void
+ */
+function load_library($name)
+{
+	require str_append(LIB_PATH, '/').str_append($name, '.php');
+}
+
+/**
  * Redirect to a URL.
  * 
  * @param  string 	$url

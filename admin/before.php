@@ -19,10 +19,10 @@
 |
 */
 
-require_once LIB_PATH.'session/session.php';
-require_once LIB_PATH.'database/database.php';
-require_once LIB_PATH.'validation/validation.php';
-require_once ROOT_DIR.'classes/user.php';
+load_library('session/session.php');
+load_library('database/database.php');
+load_library('validation/validation.php');
+load_class('user.php');
 
 Session::start();
 Database::connect($credentials);
