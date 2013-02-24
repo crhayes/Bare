@@ -53,7 +53,15 @@ class Database
 	{
 		extract($credentials);
 
-		$this->connection = new PDO("mysql:host=$host;dbname=$database", $username, $password) or die('There was a problem connecting to the database.');
+		if (($database AND $username AND $password) == '') {
+			die('Database credentials required in config.php');
+		}
+
+		try {
+			$this->connection = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+		} catch (PDOException $e) {
+		    die("Database Error: " . $e->getMessage());
+		}
 	}
 
 	/**
@@ -291,7 +299,9 @@ class DatabaseQuery implements ArrayAccess, IteratorAggregate
      */
     public function __get($name)
     {
-    	return $this->result->{$name};
+    	if ($this->result) {
+    		return $this->result->{$name};
+    	}
     }
 
     /**
@@ -306,7 +316,35 @@ class DatabaseQuery implements ArrayAccess, IteratorAggregate
      */
     public function __toString()
     {
-    	return $this->result;
+    	if ($this->result) {
+    		return $this->result;
+    	}
+    }
+
+    /**
+     * Magic method to return the data that should be serialized when attempting
+     * to serialize an object instance.
+     * 
+     * @return array
+     */
+    public function __sleep()
+    {
+    	return array('result');
+    }
+
+    /**
+     * Magic method that is called when calling isset() on an object instance.
+     * 
+     * @param  string  $name
+     * @return boolean
+     */
+    public function __isset($name)
+    {
+    	if (is_array($this->result)) {
+    		return ! empty($this->result[$name]);
+    	}
+
+    	return ! empty($this->result);
     }
 
  	public function offsetSet($offset, $value)

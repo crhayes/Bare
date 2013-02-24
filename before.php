@@ -19,3 +19,5 @@
 |
 */
 
+require 'libraries/database/database.php';
+Database::connect($credentials);
