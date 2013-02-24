@@ -9,6 +9,7 @@
 |
 */
 define('LIB_PATH', ROOT_DIR.'libraries/');
+define('CLASS_PATH', ROOT_DIR.'classes/');
 define('VIEW_PATH', ROOT_DIR.'views/');
 define('ASSET_PATH', BASE_PATH.'assets/');
 define('UPLOAD_PATH', ASSET_PATH.'uploads/');
