@@ -27,6 +27,13 @@ require_once ROOT_DIR.'classes/user.php';
 Session::start();
 Database::connect($credentials);
 
+// Redirect guests to the login screen
 if (User::guest() && ! request_path('login')) {
+	redirect('login', 302);
+}
+
+// On logout end the session and redirect to login
+if (request_path('logout')) {
+	Session::delete('user');
 	redirect('login', 302);
 }

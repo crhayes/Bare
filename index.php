@@ -13,14 +13,12 @@ require_once LIB_PATH.'helpers.php';
 // Create new HTTP Request and Response objects to handle the response
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-$request = Request::createFromGlobals();
-$response = new Response();
+$GLOBALS['request'] = Request::createFromGlobals();
+$GLOBALS['response'] = new Response();
 
 // Get the request path
-$path = $request->getPathInfo();
-if ($path != '/') {
-	$path = ltrim($path, '/');
-}
+$path = $GLOBALS['request']->getPathInfo();
+$GLOBALS['requestPath'] = ($path != '/') ? ltrim($path, '/') : $path;
 
 ob_start();
 
@@ -37,10 +35,10 @@ if (isset($routes[$path])) {
 	include $file;
 } else {
 	include str_append(VIEW_PATH, '/').$routes[404];
-    $response->setStatusCode(404);
+    $GLOBALS['response']->setStatusCode(404);
 }
 
 include ROOT_DIR.'after.php';
 
-$response->setContent(ob_get_clean());
-$response->send();
+$GLOBALS['response']->setContent(ob_get_clean());
+$GLOBALS['response']->send();

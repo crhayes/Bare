@@ -45,6 +45,28 @@ function array_get($key, $array, $default = null)
 }
 
 /**
+ * Load a view.
+ * 
+ * @param  string 	$name
+ * @return void
+ */
+function load_view($name)
+{
+	require str_append(VIEW_PATH, '/').str_append($name, '.php');
+}
+
+/**
+ * Load a class.
+ * 
+ * @param  string 	$name
+ * @return void
+ */
+function load_class($name)
+{
+	require str_append(CLASS_PATH, '/').str_append($name, '.php');
+}
+
+/**
  * Redirect to a URL.
  * 
  * @param  string 	$url
@@ -80,7 +102,7 @@ function request_path($path)
  */
 function asset($path, $return = false)
 {
-	if (($path = BASE_PATH.'assets/'.$path) && $return) {
+	if (($path = str_append(ASSET_PATH, '/').$path) && $return) {
 		return $path;
 	}
 
@@ -95,7 +117,7 @@ function asset($path, $return = false)
  */
 function url($path, $return = false)
 {
-	if (($path = BASE_PATH.DS.$path) && $return) {
+	if (($path = str_append(BASE_PATH, '/').$path) && $return) {
 		return $path;
 	}
 
