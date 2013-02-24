@@ -145,9 +145,9 @@ function url($path, $return = false)
 function make_hash($value, $salt = null)
 {
 	if ($salt === null) {
-		$salt = substr(md5(uniqid(rand(), true)), 0, 12);
+		$salt = substr(md5(uniqid(rand(), true)), 0, 24);
 	} else {
-		$salt = substr($salt, 0, 12);
+		$salt = md5($value.strrev($salt));
 	}
  
 	return hash('sha256', ($salt.$value));
@@ -162,7 +162,10 @@ function make_hash($value, $salt = null)
  */
  function dd($value)
  {
- 	die(var_dump($value));
+ 	echo '<pre>';
+ 	var_dump($value);
+ 	echo '</pre>';
+ 	die();
  }
 
  /**
