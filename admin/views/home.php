@@ -12,49 +12,70 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php asset('css/foundation.min.css') ?>">
-    <link rel="stylesheet/less" href="<?php asset('css/app.css') ?>">
+    <link rel="stylesheet/less" href="<?php asset('css/style.css') ?>">
 
     <script src="<?php asset('js/modernizr.foundation.js') ?>"></script>
   </head>
   <body>
-    <div id="page-container" class="container">
-      <h1>Home</h1>
+    <!-- Header and Nav -->
+    <div class="contain-to-grid fixed">
+      <nav class="top-bar">
+        <ul>
+          <!-- Title Area -->
+          <li class="name">
+            <h1>
+              <a href="#">
+                Admin
+              </a>
+            </h1>
+          </li>
+          <li class="toggle-topbar"><a href="#"></a></li>
+        </ul>
+
+        <section>
+          <!-- Left Nav Section -->
+          <ul class="left">
+            <li class="divider"></li>
+            <li class="has-dropdown">
+              <a class="active" href="#">Main Item 1</a>
+              <ul class="dropdown">
+                <li><label>Section Name</label></li>
+                <li><a href="#" class="">Dropdown Level 1</a></li>
+                <li><a href="#">Dropdown Option</a></li>
+                <li><a href="#">Dropdown Option</a></li>
+                <li class="divider"></li>
+                <li><label>Section Name</label></li>
+                <li><a href="#">Dropdown Option</a></li>
+                <li><a href="#">Dropdown Option</a></li>
+                <li><a href="#">Dropdown Option</a></li>
+                <li class="divider"></li>
+                <li><a href="#">See all &rarr;</a></li>
+              </ul>
+            </li>
+            <li class="divider"></li>
+            <li><a href="#">Main Item 2</a></li>
+            <li class="divider"></li>
+          </ul>
+
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li class="divider"></li>
+            <li><a href="#">Main Item 5</a></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+    <!-- End Header and Nav -->
+
+    <div id="page-container" class="row">
+      <div class="twelve columns">
+        <h1>Home</h1>
+      </div>
     </div>
     
-    <!-- Included JS Files (Uncompressed) -->
-    <!--
-    <script src="<?php asset('js/jquery.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.mediaQueryToggle.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.forms.js') ?>"></script>
-    <script src="<?php asset('js/jquery.event.move.js') ?>"></script>
-    <script src="<?php asset('js/jquery.event.swipe.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.reveal.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.orbit.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.navigation.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.buttons.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.tabs.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.tooltips.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.accordion.js') ?>"></script>
-    <script src="<?php asset('js/jquery.placeholder.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.alerts.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.topbar.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.joyride.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.clearing.js') ?>"></script>
-    <script src="<?php asset('js/jquery.foundation.magellan.js') ?>"></script>
-    
-    -->
-    
-    <!-- Included JS Files (Compressed) -->
+    <!-- Javascripts -->
     <script src="<?php asset('js/foundation.min.js') ?>"></script>
-    
-    <!-- Initialize JS Plugins -->
     <script src="<?php asset('js/app.js') ?>"></script>
-    <script src="<?php asset('js/less-1.3.0.min.js') ?>"></script>
-    
-    <script>
-      $(window).load(function(){
-        $("#featured").orbit();
-      });
-    </script>  
+    <script src="<?php asset('js/less-1.3.0.min.js') ?>"></script> 
   </body>
 </html>

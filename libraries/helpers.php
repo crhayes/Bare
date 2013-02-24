@@ -45,6 +45,34 @@ function array_get($key, $array, $default = null)
 }
 
 /**
+ * Redirect to a URL.
+ * 
+ * @param  string 	$url
+ * @param  int 		$responseCode
+ * @return void
+ */
+function redirect($url, $responseCode = null)
+{
+	header("Location: $url", true, $responseCode);
+	exit(1);
+}
+
+/**
+ * Check if a path matches the current request path.
+ * 
+ * @param  string 	$path
+ * @return boolean
+ */
+function request_path($path)
+{
+	if ($GLOBALS['requestPath'] == $path) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
  * Get a path to an asset relative to the root.
  * 
  * @param  string 	$path

@@ -8,17 +8,44 @@
 
 
 /* -----------------------------------------
-   	Page Styles
+    Page Styles
+----------------------------------------- */
+html {
+    width: 100%;
+    height: 100%;
+
+    body {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #eee;
+
+        #login-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -200px;
+            width: 400px;
+            background: #fff;
+        }
+
+        #page-container {
+            margin: 15px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+    }
+}
+
+/* -----------------------------------------
+    Fonts
 ----------------------------------------- */
 
 
 /* -----------------------------------------
-   	Fonts
------------------------------------------ */
-
-
-/* -----------------------------------------
-   	Icons
+    Icons
 ----------------------------------------- */
 .icon-bebo-32 {
     display: inline-block;
