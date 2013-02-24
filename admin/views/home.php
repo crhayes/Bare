@@ -13,6 +13,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php asset('css/foundation.min.css') ?>">
     <link rel="stylesheet/less" href="<?php asset('css/style.css') ?>">
+    <link rel="stylesheet/less" href="<?php asset('css/app.css') ?>">
 
     <script src="<?php asset('js/modernizr.foundation.js') ?>"></script>
   </head>
@@ -77,5 +78,44 @@
     <script src="<?php asset('js/foundation.min.js') ?>"></script>
     <script src="<?php asset('js/app.js') ?>"></script>
     <script src="<?php asset('js/less-1.3.0.min.js') ?>"></script> 
+    <div id="page-container" class="container">
+      <h1>Home</h1>
+    </div>
+    
+    <!-- Included JS Files (Uncompressed) -->
+    <!--
+    <script src="<?php asset('js/jquery.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.mediaQueryToggle.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.forms.js') ?>"></script>
+    <script src="<?php asset('js/jquery.event.move.js') ?>"></script>
+    <script src="<?php asset('js/jquery.event.swipe.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.reveal.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.orbit.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.navigation.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.buttons.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.tabs.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.tooltips.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.accordion.js') ?>"></script>
+    <script src="<?php asset('js/jquery.placeholder.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.alerts.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.topbar.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.joyride.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.clearing.js') ?>"></script>
+    <script src="<?php asset('js/jquery.foundation.magellan.js') ?>"></script>
+    
+    -->
+    
+    <!-- Included JS Files (Compressed) -->
+    <script src="<?php asset('js/foundation.min.js') ?>"></script>
+    
+    <!-- Initialize JS Plugins -->
+    <script src="<?php asset('js/app.js') ?>"></script>
+    <script src="<?php asset('js/less-1.3.0.min.js') ?>"></script>
+    
+    <script>
+      $(window).load(function(){
+        $("#featured").orbit();
+      });
+    </script>  
   </body>
 </html>

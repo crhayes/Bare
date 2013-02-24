@@ -42,9 +42,9 @@ $routes = array(
 */
 $credentials = array(
 	'host' 	   => 'localhost',
-	'username' => 'root',
-	'password' => 'Golden1s!',
-	'database' => 'test'
+	'username' => '',
+	'password' => '',
+	'database' => ''
 );
 
 /*
