@@ -45,7 +45,6 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php asset('css/foundation.min.css') ?>">
     <link rel="stylesheet/less" href="<?php asset('css/style.css') ?>">
-    <link rel="stylesheet/less" href="<?php asset('css/app.css') ?>">
 
     <script src="<?php asset('js/modernizr.foundation.js') ?>"></script>
   </head>

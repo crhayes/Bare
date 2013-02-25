@@ -53,7 +53,7 @@ class Database
 	{
 		extract($credentials);
 
-		if (($database AND $username AND $password) == '') {
+		if (($host AND $database AND $username) == '') {
 			die('Database credentials required in config.php');
 		}
 

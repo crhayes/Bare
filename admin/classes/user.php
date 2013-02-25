@@ -35,7 +35,8 @@ class User
 			 `password` VARCHAR( 255 ) NOT NULL ,
 			 `firstname` VARCHAR( 255 ) NOT NULL ,
 			 `lastname` VARCHAR( 255 ) NOT NULL ,
-			PRIMARY KEY (  `user_id` )
+			PRIMARY KEY (`user_id`),
+  			UNIQUE KEY `email` (`email`)
 			) ENGINE = INNODB DEFAULT CHARSET = latin1;"
 		);
 
