@@ -29,7 +29,7 @@ class User
 	public static function install()
 	{
 		Database::query(
-			"CREATE TABLE  `test`.`user` (
+			"CREATE TABLE IF NOT EXISTS `user` (
 			`user_id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 			 `email` VARCHAR( 255 ) NOT NULL ,
 			 `password` VARCHAR( 255 ) NOT NULL ,
