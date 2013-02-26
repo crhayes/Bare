@@ -1,18 +1,18 @@
 [
     {
         "name": "symfony/class-loader",
-        "version": "v2.1.7",
-        "version_normalized": "2.1.7.0",
+        "version": "v2.1.8",
+        "version_normalized": "2.1.8.0",
         "target-dir": "Symfony/Component/ClassLoader",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/ClassLoader",
-            "reference": "v2.1.7"
+            "url": "https://github.com/symfony/ClassLoader.git",
+            "reference": "v2.1.8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/v2.1.7",
-            "reference": "v2.1.7",
+            "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/v2.1.8",
+            "reference": "v2.1.8",
             "shasum": ""
         },
         "require": {
@@ -21,7 +21,7 @@
         "require-dev": {
             "symfony/finder": "2.1.*"
         },
-        "time": "2013-01-09 08:51:07",
+        "time": "2013-01-26 07:21:53",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -48,24 +48,24 @@
     },
     {
         "name": "symfony/http-foundation",
-        "version": "v2.1.7",
-        "version_normalized": "2.1.7.0",
+        "version": "v2.1.8",
+        "version_normalized": "2.1.8.0",
         "target-dir": "Symfony/Component/HttpFoundation",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/HttpFoundation",
-            "reference": "v2.1.7"
+            "url": "https://github.com/symfony/HttpFoundation.git",
+            "reference": "v2.1.8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/symfony/HttpFoundation/archive/v2.1.7.zip",
-            "reference": "v2.1.7",
+            "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/v2.1.8",
+            "reference": "v2.1.8",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2013-01-11 00:31:43",
+        "time": "2013-02-22 18:02:22",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -90,5 +90,95 @@
         ],
         "description": "Symfony HttpFoundation Component",
         "homepage": "http://symfony.com"
+    },
+    {
+        "name": "facebook/php-sdk",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/facebook/facebook-php-sdk.git",
+            "reference": "bf99924386be074da30a8e9d6bbcb49d3333da12"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/facebook/facebook-php-sdk/zipball/bf99924386be074da30a8e9d6bbcb49d3333da12",
+            "reference": "bf99924386be074da30a8e9d6bbcb49d3333da12",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0",
+            "ext-curl": "*",
+            "ext-json": "*"
+        },
+        "time": "2013-01-15 21:37:15",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "src"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache2"
+        ],
+        "authors": [
+            {
+                "name": "Facebook",
+                "homepage": "https://github.com/facebook/facebook-php-sdk/contributors"
+            }
+        ],
+        "description": "Facebook PHP SDK",
+        "homepage": "https://github.com/facebook/facebook-php-sdk",
+        "keywords": [
+            "facebook",
+            "sdk"
+        ]
+    },
+    {
+        "name": "nesbot/carbon",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/briannesbitt/Carbon.git",
+            "reference": "1.2.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/briannesbitt/Carbon/zipball/1.2.0",
+            "reference": "1.2.0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2012-10-14 17:41:18",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Carbon": "."
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Brian Nesbitt",
+                "email": "brian@nesbot.com",
+                "homepage": "http://nesbot.com"
+            }
+        ],
+        "description": "A simple API extension for DateTime.",
+        "homepage": "https://github.com/briannesbitt/Carbon",
+        "keywords": [
+            "time",
+            "date",
+            "datetime"
+        ]
     }
 ]

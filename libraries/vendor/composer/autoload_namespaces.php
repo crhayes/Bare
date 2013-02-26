@@ -9,4 +9,6 @@ return array(
     'Symfony\\Component\\HttpFoundation' => $vendorDir . '/symfony/http-foundation/',
     'Symfony\\Component\\ClassLoader' => $vendorDir . '/symfony/class-loader/',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs',
+    'Carbon' => $vendorDir . '/nesbot/carbon/.',
+    'Bare' => $baseDir . '/',
 );

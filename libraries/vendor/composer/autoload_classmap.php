@@ -6,4 +6,14 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'BaseFacebook' => $baseDir . '/vendor/facebook/php-sdk/src/base_facebook.php',
+    'Crypt_AES' => $baseDir . '/vendor/crypt/AES.php',
+    'Crypt_DES' => $baseDir . '/vendor/crypt/DES.php',
+    'Crypt_Hash' => $baseDir . '/vendor/crypt/Hash.php',
+    'Crypt_RC4' => $baseDir . '/vendor/crypt/RC4.php',
+    'Crypt_RSA' => $baseDir . '/vendor/crypt/RSA.php',
+    'Crypt_Rijndael' => $baseDir . '/vendor/crypt/Rijndael.php',
+    'Crypt_TripleDES' => $baseDir . '/vendor/crypt/TripleDES.php',
+    'Facebook' => $baseDir . '/vendor/facebook/php-sdk/src/facebook.php',
+    'FacebookApiException' => $baseDir . '/vendor/facebook/php-sdk/src/base_facebook.php',
 );

@@ -1,0 +1,15 @@
+{
+    "require": {
+        "symfony/class-loader": "2.1.*",
+        "symfony/http-foundation": "2.1.*",
+        "nesbot/Carbon": "*",
+        "facebook/php-sdk": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Bare": ""
+        },
+        "classmap": ["vendor/crypt"]
+    }
+}
+ 
