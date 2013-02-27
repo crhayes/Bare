@@ -27,7 +27,7 @@ define('UPLOAD_PATH', ASSET_PATH.'uploads/');
 |
 */
 $routes = array(
-	'/' => 'home.php',
+	'/' => 'index.php',
 	'404' => '404.php',
 );
 
