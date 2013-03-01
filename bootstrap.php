@@ -33,36 +33,46 @@ $GLOBALS['response'] = new Response();
 $path = $GLOBALS['request']->getPathInfo();
 $GLOBALS['requestPath'] = ($path != '/') ? ltrim($path, '/') : $path;
 
+ob_start();
+include_once ROOT_DIR.DS.'before.php';
+
 /*
 |--------------------------------------------------------------------------
-| Include Requested Files & Send Response
+| Determine Which View to Load
 |--------------------------------------------------------------------------
 |
-| Here the requested file is loaded.
+| Here the requested file is determined.
 |
 | If a route for the path exists we include that file. If not, we
 | check if a file with the same name as the route exists and 
 | attempt to include that. If that fails we throw a 404.
 |
-| Before.php is loaded before the requested
-| file, and after.php after the requested file, which allows us to 
-| easily execute code required on every request.
-|
 */
-ob_start();
-
-include_once ROOT_DIR.DS.'before.php';
-
 if (isset($routes[$path])) {
-    include_once str_append(VIEW_PATH, '/').$routes[$path];
-} elseif (($file = str_append(VIEW_PATH, '/').$path.'.php') && file_exists($file)) {
-	include_once $file;
+    $view = $routes[$path];
+} elseif (file_exists(str_append(VIEW_PATH, '/').str_append($path, '.php'))) {
+	$view = $path;
 } else {
-	include_once str_append(VIEW_PATH, '/').$routes[404];
+	$view = $routes[404];
     $GLOBALS['response']->setStatusCode(404);
 }
 
-include_once ROOT_DIR.'after.php';
+/*
+|--------------------------------------------------------------------------
+| Create a New View
+|--------------------------------------------------------------------------
+|
+| We use the built-in View class to create a new View instance.
+|
+| The View class enables us to use Template Inheritance to create
+| views that manage their own content.
+|
+*/
+load_library('view/view');
+View::setViewPath(str_append(VIEW_PATH, '/'));
+$view = new View($view);
+$view->render();
 
+include_once ROOT_DIR.'after.php';
 $GLOBALS['response']->setContent(ob_get_clean());
 $GLOBALS['response']->send();
