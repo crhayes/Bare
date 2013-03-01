@@ -104,15 +104,19 @@
 <pre class="prettyprint">
 - bare/
   - index.php
+  - bootstrap.php
   - config.php
   - before.php
   - after.php
+  - admin/
   - assets/
     - css/
-    - js/
-    - images/
     - fonts/
+    - images/
+    - js/
+    - pdfs/
     - uploads/
+    - videos/
   - classes/
   - libraries/
     - cookie/
@@ -123,8 +127,12 @@
     - upload/
     - validation/
     - vendor/
+    - view/
+    - helpers.php
   - views/
-    - home.php
+    - layouts/
+      - default.php
+    - index.php
     - 404.php
   - documentation/
 </pre>
@@ -134,6 +142,7 @@
               <li><code>classes/</code> stores classes we've written for a specific project</li>
               <li><code>libraries/</code> stores general classes that are used across projects</li>
               <li><code>views/</code> contains our PHP/HTML pages</li>
+              <li><code>uploads/</code> is useful for user uploads</li>
             </ul>
             </div>
           </section>
@@ -154,8 +163,11 @@
               <h2>Application Constants</h2>
               <p>These are useful constants that are used throughout the application.</p>
 <pre class="prettyprint linenums">
+define('LIB_PATH', ROOT_DIR.'libraries/');
+define('CLASS_PATH', ROOT_DIR.'classes/');
 define('VIEW_PATH', ROOT_DIR.'views/');
-define('UPLOAD_PATH', ROOT_DIR.'assets/uploads/');
+define('ASSET_PATH', BASE_PATH.'assets/');
+define('UPLOAD_PATH', ASSET_PATH.'uploads/');
 
 // Other constants defined in index.php
 define('DS', DIRECTORY_SEPARATOR);
@@ -163,11 +175,11 @@ define('ROOT_DIR', realpath(dirname(__FILE__)).DS);
 define('BASE_PATH', substr(ROOT_DIR, strlen($_SERVER['DOCUMENT_ROOT'])).DS);
 </pre>
               <h2>Routes</h2>
-              <p>Routes provide a way to map request URIs to PHP files.</p>
+              <p>Routes provide a way to map request URIs to PHP files. The PHP files a route maps to <strong>should omit</strong> the <code>.php</code> extension.</p>
 <pre class="prettyprint linenums">
 $routes = array(
-  '/' => 'home.php',
-  '404' => '404.php',
+  '/' => 'index',
+  '404' => '404',
 );
 </pre>
               <h2>Database Credentials</h2>
@@ -179,6 +191,13 @@ $credentials = array(
   'password' => '',
   'database' => ''
 );
+</pre>
+              <h2>System Settings</h2>
+              <p>Any other improtant settings can be defined here. By default this includes:</p>
+<pre class="prettyprint linenums">
+date_default_timezone_set('America/Toronto');
+ini_set('error_reporting', 0);
+ini_set('display_errors', 0);
 </pre>
             </div>
           </section>
@@ -194,14 +213,14 @@ $credentials = array(
               <p>The following examples show which URIs will match to which PHP files behind the scenes:</p>
 <pre class="prettyprint linenums">
 $routes = array(
-  // http://example.com  =>  http://example.com/views/home.php
-  '/' => 'home.php',
+  // http://example.com  =>  http://example.com/views/index.php
+  '/' => 'index',
 
   // http://example.com/404  =>  http://example.com/views/404.php
-  '404' => '404.php',
+  '404' => '404',
 
-  // http://example.com/about  =>  http://example.com/views/about.php
-  'about' => 'about.php'
+  // http://example.com/about  =>  http://example.com/views/company/about.php
+  'about' => 'company/about'
 );
 </pre>
               <p>Routes provide a simple way to decouple the request URI from the executed PHP file. There are advantages to this:</p>
@@ -216,8 +235,8 @@ $routes = array(
 <pre class="prettyprint linenums">
 // config.php
 $routes = array (
-  '/' => 'home.php'
-  '404' => '404.php'
+  '/' => 'index'
+  '404' => '404'
 );
 
 => User requests http://example.com/about
@@ -247,6 +266,70 @@ define('VIEW_PATH', ROOT_DIR);
 // Change Bare to check in the pages/ directory by default
 define('VIEW_PATH', ROOT_DIR.'pages/');
 </pre>
+              <h2>Views &amp; Template Inheritance</h2>
+              <p>Although views can contain strictly HTML content, the power of views comes from using Template Inheritance. Views allow us to create a default layout with content 'sections', and then have individual views extend that layout and override (or add to) the default content of the layout.</p>
+<pre class="prettyprint linenums">
+// views/index.php
+
+// views/layouts/default.php will be our page layout
+// and we will provide content to 'fill' this layout
+&lt;? extend('layouts/default') ?&gt;
+
+// Set the title that will be used in the layout
+&lt;? $title = 'Welcome to Bare!' ?&gt;
+
+// Set the content that will be used in the 'content' section
+&lt;? section('content') ?&gt;
+    &lt;h1&gt;Welcome to Bare&lt;/h1&gt;
+    &lt;p&gt;Here is a basic HTML page to get you started.&lt;/p&gt;
+&lt;? close() ?&gt;
+
+// Set the content that will be used in the 'sidebar' section
+&lt;? section('sidebar') ?&gt;
+    &lt;h2&gt;Sidebar&lt;/h2&gt;
+    &lt;p&gt;This is very simple.&lt;/p&gt;
+&lt;? close() ?&gt;
+</pre>
+<pre class="prettyprint linenums">
+// views/layouts/default.php
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    // Print the title
+    &lt;title&gt;&lt;?= $title ?&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    // The content section will be inserted here
+    &lt;? show('content') ?&gt;
+
+    // The sidebar content is defined here
+    &lt;? section('sidebar') ?&gt;
+        &lt;h2&gt;Default sidebar header&lt;/h2&gt;
+    &lt;? close() ?&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+              <p>The following code will result in a sidebar that looks like so:
+<pre class="prettyprint linenums">
+&lt;h2&gt;Sidebar&lt;/h2&gt;
+&lt;p&gt;This is very simple.&lt;/p&gt;
+</pre>
+              <p>But What if we wanted to keep the original content of the sidebar and add to it? We can do so like this:</p>
+<pre class="prettyprint linenums">
+// The sidebar content is defined here
+&lt;? section('sidebar') ?&gt;
+  @parent
+  &lt;h2&gt;Sidebar&lt;/h2&gt;
+  &lt;p&gt;This is very simple.&lt;/p&gt;
+&lt;? close() ?&gt;
+</pre>
+              <p>Which will result in the following HTML:</p>
+<pre class="prettyprint linenums">
+  &lt;h2&gt;Default sidebar header&lt;/h2&gt;
+  &lt;h2&gt;Sidebar&lt;/h2&gt;
+  &lt;p&gt;This is very simple.&lt;/p&gt;
+</pre>
             </div>
           </section>
 
@@ -256,8 +339,8 @@ define('VIEW_PATH', ROOT_DIR.'pages/');
               <hr>
               <p><code>Before.php</code> is included on every request before the requested <code>view</code> file is included, providing a place to put code that should be executed on every request before the requested content is loaded. Common examples include loading application-wide libraries or authenticating users.</p>
 <pre class="prettyprint linenums">
-require 'libraries/database/database.php';
-require 'libraries/validation/validation.php';
+load_library('database/database');
+load_library('validation/validation');
 
 if ( ! $user->loggedIn()) {
   header('Location: login.php');
@@ -268,7 +351,7 @@ if ( ! $user->loggedIn()) {
               <p>An interesting and flexible authentication scheme could look like this:</p>
 <pre class="prettyprint linenums">
 // before.php
-require 'libraries/session/session.php';
+load_library('session/session');
 
 // home.php
 define('AUTH_REQUIRED', true);
@@ -292,7 +375,7 @@ if (defined('AUTH_REQUIRED') &amp;&amp; AUTH_REQUIRED === true) {
               <h1>Assets</h1>
               <hr>
               <p>The predefined folder <code>assets</code> is included to provide a centralized place for all application assets, as well as consitency across Bare projects. Several fonts and JavaScript libraries are also included for convenience.<p>
-              <p>Folders exist for all of the most common assets, including <code>css</code>, <code>js</code>, <code>images</code>, <code>fonts</code>, and <code>uploads</code>.</p>
+              <p>Folders exist for all of the most common assets, including <code>css</code>, <code>js</code>, <code>images</code>, <code>fonts</code>, <code>uploads</code>, <code>videos</code>, and <code>pdfs</code>.</p>
               <h3>Asset Helper</h3>
               <p>A helper function exists for getting the path to an asset, and prepends the <code>BASE_PATH</code> to the asset path.</p>
               <p><em>The benefit of using this helper is that you can change your project folder and you won't have to change any of your URLs; the change will be reflected in the <code>BASE_PATH</code></em>.<p>

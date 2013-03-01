@@ -102,7 +102,7 @@ $credentials = array(
               <p><code>before.php</code> or wherever you want to connect</p>
 <pre class="prettyprint linenums">
 // Include the library
-require 'libraries/database/database.php';
+load_library('database/database');
 
 // Connect to the database (returns a Database instance)
 Database::connect($credentials);
@@ -119,7 +119,7 @@ Database::connect($credentials);
               <article>
                 <h2>Three Ways to Connect and Query</h2>
 <pre class="prettyprint linenums">
-require 'libraries/database/database.php';
+load_library('database/database');
 
 // Connect and then query statically
 Database::connect($credentials);
