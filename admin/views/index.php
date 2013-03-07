@@ -1,9 +1,9 @@
-<?php load_view('partials/header') ?>
+<? extend('layouts/default') ?>
 
-    <div id="page-container" class="row">
-      <div class="twelve columns">
-        <h1>Home</h1>
-      </div>
-    </div>
-    
-<?php load_view('partials/footer') ?>
+<? $title = 'Home' ?>
+
+<? section('content') ?>
+  <div class="twelve columns">
+    <h1>Home</h1>
+  </div>
+<? close() ?>

@@ -28,7 +28,7 @@ Session::start();
 Database::connect($credentials);
 
 // Redirect guests to the login screen
-if (User::guest() && ! request_path('login')) {
+if (User::guest() && ! (request_path('login') || request_path('install'))) {
 	redirect('login', 302);
 }
 

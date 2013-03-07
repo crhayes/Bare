@@ -35,6 +35,13 @@ html {
             padding: 20px;
             background: #fff;
             border: 1px solid #ddd;
+
+            h1 {
+                margin: -20px -35px 35px -35px;
+                padding: 20px;
+                background: #f9f9f9;
+                border-bottom: 1px solid #dddddd;
+            }
         }
     }
 }
