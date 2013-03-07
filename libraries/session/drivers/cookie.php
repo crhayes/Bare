@@ -21,8 +21,10 @@ class SessionCookie extends Session implements SessionDriver
 	 * @return mixed
 	 */
 	public function get($key)
-	{		
-		return unserialize($this->aes->decrypt($_COOKIE[$key]));
+	{
+		if (isset($_COOKIE[$key])) {
+			return unserialize($this->aes->decrypt($_COOKIE[$key]));			
+		}
 	}
 
 	/**

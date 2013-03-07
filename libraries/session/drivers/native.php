@@ -21,8 +21,10 @@ class SessionNative extends Session implements SessionDriver
 	 * @return mixed
 	 */
 	public function get($key)
-	{		
-		return unserialize($this->aes->decrypt($_SESSION[$key]));
+	{
+		if (isset($_SESSION[$key])) {
+			return unserialize($this->aes->decrypt($_SESSION[$key]));			
+		}
 	}
 	
 	/**
