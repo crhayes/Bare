@@ -32,12 +32,12 @@
 
     <div class="<?= $validation->errors->exist('email') ? 'error' : '' ?>">
       <input type="text" name="email" placeholder="Email" value="<?= array_get('email', $_POST); ?>">
-      <?= $validation->errors->first('email', '<small>:message</small>'); ?>
+      <?= $validation->errors->get('email', '<small>:message</small>', true); ?>
     </div>
 
     <div class="<?= $validation->errors->exist('password') ? 'error' : '' ?>">
       <input type="password" name="password" placeholder="Password">
-      <?= $validation->errors->first('password', '<small>:message</small>'); ?>
+      <?= $validation->errors->get('password', '<small>:message</small>', true); ?>
     </div>
     <button type="submit" name="submit" class="button">Login</button>
   </form>

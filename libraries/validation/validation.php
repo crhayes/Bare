@@ -164,14 +164,8 @@ class Validation
         // Get the value for the current attribute.
         $value = ( ! empty($this->data[$attribute])) ? $this->data[$attribute] : null;
 
-        // Before validating the attribute we need to make sure it is actually 
-        // validatable. We only run the validation rule if the value for the
-        // attribute is set (i.e. passes the validateRequired rule), or if the
-        // rule is the required rule itself.
-        $validatable = $this->validatable($attribute, $value, $rule);
-
         // Call the validation function.
-        if ($validatable and ! $this->{'validate'.$rule}($attribute, $value, $parameters)) {
+        if ( ! $this->{'validate'.$rule}($attribute, $value, $parameters)) {
             // The size rules can apply to either numeric or string values, and 
             // the resulting error messages will be different. Here we determine
             // whether the error should be formatted for a string or numeric value.
@@ -782,13 +776,16 @@ class ValidationError
      * 
      * @param  string   $attribute
      * @param  string   $format
+     * @param  boolean  $returnString
      * @return array
      */
-    public function get($attribute, $format = null)
+    public function get($attribute, $format = null, $returnString = false)
     {
         if ($this->exist($attribute)) {
             // Format the message
-            return $this->formatMessages($this->errors[$attribute], $format);
+            $messages = $this->formatMessages($this->errors[$attribute], $format);
+
+            return ($returnString) ? $this->compressMessages($messages) : $messages;
         }
     }
 
@@ -796,12 +793,15 @@ class ValidationError
      * Get all the errors.
      * 
      * @param  string   $format
+     * @param  boolean  $returnString
      * @return array
      */
-    public function all($format = null)
+    public function all($format = null, $returnString = false)
     {
         // Format the message
-        return $this->formatMessages($this->errors, $format);
+        $messages = $this->formatMessages($this->errors, $format);
+
+        return ($returnString) ? $this->compressMessages($messages) : $messages;
     }
 
     /**
@@ -847,7 +847,7 @@ class ValidationError
      * @param  string   $format
      * @return mixed
      */
-    public function formatMessages($messages, $format)
+    private function formatMessages($messages, $format)
     {
         // If formatting is specified apply it
         if ($format) {
@@ -866,6 +866,26 @@ class ValidationError
     }
 
     /**
+     * Convert an array of messages into a string. This is useful for easily printing
+     * all error messages to the screen.
+     * 
+     * @param  array    $messages
+     * @return string
+     */
+    private function compressMessages($messages)
+    {
+        if (is_array($messages)) {
+            foreach ($messages as &$message) {
+                $message = $this->compressMessages($message);
+            }
+            
+            $messages = join('', $messages);
+        }
+
+        return $messages;
+    }
+
+    /**
      * Given an array key in "dot notation" get an array value if it 
      * exists, otherwise return a default value.
      * 
@@ -877,7 +897,7 @@ class ValidationError
     {
         foreach (explode('.', $keys) as $key)
         {
-            if (!is_array($array) or !array_key_exists($key, $array))
+            if ( ! is_array($array) or ! array_key_exists($key, $array))
             {
                 return $default;
             }
