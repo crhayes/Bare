@@ -180,5 +180,43 @@
             "facebook",
             "sdk"
         ]
+    },
+    {
+        "name": "underscore/Underscore.php",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ActiveObject/Underscore.php.git",
+            "reference": "v1.3.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ActiveObject/Underscore.php/zipball/v1.3.1",
+            "reference": "v1.3.1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2012-05-08 22:12:27",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "underscore.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Underscore.php is a PHP port of Underscore.js.",
+        "homepage": "http://brianhaveri.github.com/Underscore.php",
+        "keywords": [
+            "util",
+            "underscore",
+            "functional"
+        ]
     }
 ]

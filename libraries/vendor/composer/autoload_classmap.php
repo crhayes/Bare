@@ -16,4 +16,5 @@ return array(
     'Crypt_TripleDES' => $baseDir . '/vendor/crypt/TripleDES.php',
     'Facebook' => $baseDir . '/vendor/facebook/php-sdk/src/facebook.php',
     'FacebookApiException' => $baseDir . '/vendor/facebook/php-sdk/src/base_facebook.php',
+    '__' => $baseDir . '/vendor/underscore/Underscore.php/underscore.php',
 );
