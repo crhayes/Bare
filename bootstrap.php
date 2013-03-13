@@ -34,6 +34,7 @@ $path = $GLOBALS['request']->getPathInfo();
 $GLOBALS['requestPath'] = ($path != '/') ? ltrim($path, '/') : $path;
 
 ob_start();
+
 include_once ROOT_DIR.DS.'before.php';
 
 /*
@@ -48,13 +49,17 @@ include_once ROOT_DIR.DS.'before.php';
 | attempt to include that. If that fails we throw a 404.
 |
 */
-if (isset($routes[$path])) {
-    $view = $routes[$path];
-} elseif (file_exists(str_append(VIEW_PATH, '/').str_append($path, '.php'))) {
-	$view = $path;
-} else {
-	$view = $routes[404];
-    $GLOBALS['response']->setStatusCode(404);
+switch ($path) {
+	case isset($routes[$path]):
+		$view = $routes[$path];
+		break;
+	case file_exists(str_append(VIEW_PATH, '/').str_append($path, '.php')):
+		$view = $path;
+		break;
+	default:
+		$view = $routes[404];
+		$GLOBALS['response']->setStatusCode(404);
+		break;
 }
 
 /*
@@ -69,10 +74,12 @@ if (isset($routes[$path])) {
 |
 */
 load_library('view/view');
+
 $view = View::make($view);
 $view->setViewPath(str_append(VIEW_PATH, '/'));
 $view->render();
 
 include_once ROOT_DIR.'after.php';
+
 $GLOBALS['response']->setContent(ob_get_clean());
 $GLOBALS['response']->send();
