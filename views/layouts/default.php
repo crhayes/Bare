@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="<?php asset('images/favicon.png') ?>">
 
     <!-- Stylesheets -->
-    <? section('head.css') ?>
+    <? section('styles') ?>
         <link rel="stylesheet" type="text/css" href="<?php asset('css/normalize.css') ?>">
         <link rel="stylesheet" type="text/css" href="<?php asset('css/font-awesome.min.css') ?>">
         <link rel="stylesheet" type="text/css" href="<?php asset('css/style.css') ?>">
@@ -25,7 +25,7 @@
 
     <? show('content') ?>
 
-    <? section('js') ?>
+    <? section('scripts') ?>
         <!-- Javascripts -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script type="text/javascript" src="<?php asset('js/app.js') ?>"></script>
