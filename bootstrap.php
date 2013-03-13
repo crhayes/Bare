@@ -69,8 +69,8 @@ if (isset($routes[$path])) {
 |
 */
 load_library('view/view');
-View::setViewPath(str_append(VIEW_PATH, '/'));
-$view = new View($view);
+$view = View::make($view);
+$view->setViewPath(str_append(VIEW_PATH, '/'));
 $view->render();
 
 include_once ROOT_DIR.'after.php';

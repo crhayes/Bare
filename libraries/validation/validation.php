@@ -70,7 +70,7 @@ class Validation
      * @param   array   $data 
      * @param   mixed   $messages 
      */
-    function __construct($data, $messages)
+    private function __construct($data, $messages)
     {
         $this->data = $data;
 

@@ -71,7 +71,7 @@ class View
 	 * 
 	 * @var string
 	 */
-	private static $viewPath = 'views/';
+	private $viewPath = 'views/';
 
 	/**
 	 * The name of the view we are loading.
@@ -104,13 +104,21 @@ class View
 	/**
 	 * Returns a new template object
 	 *
-	 * @param string $view
+	 * @param string 	$view
 	 */
-	public function __construct($view)
+	private function __construct($view)
 	{
 		$this->viewName = $view;
+	}
 
-		self::$instance = $this;
+	/**
+	 * Return an instance of the view class.
+	 * 
+	 * @param  string 	$view
+	 * @return View
+	 */
+	public static function make($view) {
+		return self::getInstance($view);
 	}
 
 	/**
@@ -118,11 +126,16 @@ class View
 	 *
 	 * This is used to return an instance of the view class to the helper
 	 * methods that would otherwise have no access to the View data.
-	 * 
+	 *
+	 * @param  mixed 	$view
 	 * @return View
 	 */
-	public static function getInstance()
+	public static function getInstance($view = null)
 	{
+		if ( ! isset(self::$instance)) {
+			self::$instance = new View($view);
+		}
+
 		return self::$instance;
 	}
 
@@ -131,9 +144,9 @@ class View
 	 * 
 	 * @param string 	$path
 	 */
-	public static function setViewPath($path)
+	public function setViewPath($path)
 	{
-		self::$viewPath = $path;
+		$this->viewPath = $path;
 	}
 
 	/**
@@ -181,7 +194,7 @@ class View
 		ob_start();
 
 		extract((array) $this);
-		require self::$viewPath . $view . '.php';
+		require $this->viewPath . $view . '.php';
 
 		$definedVars = get_defined_vars();
 		$this->populateProperties($definedVars);

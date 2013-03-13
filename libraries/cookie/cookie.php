@@ -39,7 +39,7 @@ class Cookie
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	private function __construct()
 	{		
 		// Load the Cryptography class
 		require_once(__DIR__.'/../vendor/crypt/AES.php');

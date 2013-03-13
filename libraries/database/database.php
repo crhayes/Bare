@@ -49,7 +49,7 @@ class Database
 	 * @param  array 	$credentials
 	 * @return void
 	 */
-	public function __construct($credentials)
+	private function __construct($credentials)
 	{
 		extract($credentials);
 

@@ -40,7 +40,7 @@ class Session
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	private function __construct()
 	{
 		session_start();
 		
