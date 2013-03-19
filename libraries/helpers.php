@@ -111,13 +111,9 @@ function request_path($path)
  * @param  string 	$path
  * @return mixed
  */
-function asset($path, $return = false)
+function asset($path)
 {
-	if (($path = str_append(ASSET_PATH, '/').$path) && $return) {
-		return $path;
-	}
-
-	echo $path;
+	return str_append(ASSET_PATH, '/').$path;
 }
 
 /**
@@ -126,13 +122,9 @@ function asset($path, $return = false)
  * @param  string 	$path
  * @return mixed
  */
-function url($path, $return = false)
+function url($path)
 {
-	if (($path = str_append(BASE_PATH, '/').$path) && $return) {
-		return $path;
-	}
-
-	echo $path;
+	return str_append(BASE_PATH, '/').$path;
 }
 
 /**

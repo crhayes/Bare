@@ -8,21 +8,21 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="<?php asset('images/favicon.png') ?>">
+    <link rel="icon" type="image/png" href="<?= asset('images/favicon.png') ?>">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="<?php asset('css/foundation.min.css') ?>">
-    <link rel="stylesheet/less" href="<?php asset('css/style.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/foundation.min.css') ?>">
+    <link rel="stylesheet/less" href="<?= asset('css/style.css') ?>">
 
-    <script src="<?php asset('js/modernizr.foundation.js') ?>"></script>
+    <script src="<?= asset('js/modernizr.foundation.js') ?>"></script>
   </head>
   <body>
     
     <? show('content') ?>
 
     <!-- Javascripts -->
-    <script src="<?php asset('js/foundation.min.js') ?>"></script>
-    <script src="<?php asset('js/app.js') ?>"></script>
-    <script src="<?php asset('js/less-1.3.0.min.js') ?>"></script>
+    <script src="<?= asset('js/foundation.min.js') ?>"></script>
+    <script src="<?= asset('js/app.js') ?>"></script>
+    <script src="<?= asset('js/less-1.3.0.min.js') ?>"></script>
   </body>
 </html>
